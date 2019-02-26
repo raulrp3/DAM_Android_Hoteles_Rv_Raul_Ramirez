@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RV_Hoteles</string>
+    <string name="string_return">Volver</string>
 </resources>

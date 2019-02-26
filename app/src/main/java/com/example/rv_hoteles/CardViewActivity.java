@@ -3,6 +3,8 @@ package com.example.rv_hoteles;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,6 +15,7 @@ public class CardViewActivity extends AppCompatActivity {
     private TextView hotelName;
     private TextView hotelAddres;
     private TextView hotelCalification;
+    Button btnReturn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,14 @@ public class CardViewActivity extends AppCompatActivity {
         initUI();
 
         initData();
+
+        btnReturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  new Intent(CardViewActivity.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initUI(){
@@ -29,6 +40,7 @@ public class CardViewActivity extends AppCompatActivity {
         hotelName = findViewById(R.id.card_hotel_name);
         hotelAddres = findViewById(R.id.card_hotel_address);
         hotelCalification = findViewById(R.id.card_hotel_calification);
+        btnReturn = findViewById(R.id.btn_return);
     }
 
     private void initData(){
