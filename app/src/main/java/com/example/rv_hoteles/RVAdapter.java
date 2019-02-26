@@ -1,8 +1,10 @@
 package com.example.rv_hoteles;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -31,22 +33,40 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.HotelViewHolder> {
     }
 
     List<Hotel> hotels;
+    Context context;
+    private CustomItemClick listener;
 
-    RVAdapter(List<Hotel> hotels){this.hotels = hotels;}
+    RVAdapter(List<Hotel> hotels,Context context,CustomItemClick listener){
+        this.hotels = hotels;
+        this.context = context;
+        this.listener = listener;
+    }
 
     @NonNull
     @Override
-    public HotelViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return null;
+    public HotelViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup,final int i) {
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item,viewGroup,false);
+        final HotelViewHolder hvh = new HotelViewHolder(v);
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onClick(v,hvh.getAdapterPosition());
+            }
+        });
+
+        return hvh;
     }
 
     @Override
     public void onBindViewHolder(@NonNull HotelViewHolder hotelViewHolder, int i) {
-
+        hotelViewHolder.hotelName.setText(hotels.get(i).getmName());
+        hotelViewHolder.hotelAddress.setText(hotels.get(i).getmAddress());
+        hotelViewHolder.hotelCalification.setText(hotels.get(i).getmCalification());
+        hotelViewHolder.hotelImage.setImageResource(hotels.get(i).getmImage());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return hotels.size();
     }
 }

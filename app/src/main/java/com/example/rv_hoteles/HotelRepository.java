@@ -14,7 +14,7 @@ public class HotelRepository {
 
     private HotelRepository(){
         saveHotel(new Hotel("Hotel Haníbal","Calle Hanñibal 20","4 estrellas",R.drawable.hotel_01));
-        saveHotel(new Hotel("Hotel cervantes","Calle cervantes 67","4 estrellas",R.drawable.hotel_02));
+        saveHotel(new Hotel("Hotel cervantes","Calle Cervantes 67","4 estrellas",R.drawable.hotel_02));
         saveHotel(new Hotel("Hotel Santiago","Calle Santiago 7","5 estrellas",R.drawable.hotel_03));
     }
 
