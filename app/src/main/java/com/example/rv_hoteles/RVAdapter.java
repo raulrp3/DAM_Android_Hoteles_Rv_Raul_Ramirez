@@ -69,4 +69,12 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.HotelViewHolder> {
     public int getItemCount() {
         return hotels.size();
     }
+
+    public void deleteItem(int i){
+        hotels.remove(i);
+    }
+
+    public Context getContext(){
+        return context;
+    }
 }

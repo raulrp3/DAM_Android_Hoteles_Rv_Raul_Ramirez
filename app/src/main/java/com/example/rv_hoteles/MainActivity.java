@@ -5,8 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Hotel> hotels;
     private RecyclerView rv;
+    private RVAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initAdapter(){
-        RVAdapter adapter = new RVAdapter(hotels, MainActivity.this, new CustomItemClick() {
+       adapter = new RVAdapter(hotels, MainActivity.this, new CustomItemClick() {
             @Override
             public void onClick(View view, int index) {
                 Intent intent = new Intent(MainActivity.this,CardViewActivity.class);
@@ -56,5 +57,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         rv.setAdapter(adapter);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new Swipe(adapter));
+        itemTouchHelper.attachToRecyclerView(rv);
     }
 }
